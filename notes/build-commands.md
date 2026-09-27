@@ -254,7 +254,7 @@ mkdocs gh-deploy
 
     - Not reachable from your phone, another computer, or the internet — it's just for you to preview while building
 
-2. Everywhere -- Deploy to hosting service: `mkdocs gh-serve`
+2. Everywhere -- Deploy to hosting service: `mkdocs gh-deploy`
 
    1. Deploy it (the real goal, since this is for your dad's business):
        - mkdocs gh-deploy → publishes to GitHub Pages, gets a real public URL
