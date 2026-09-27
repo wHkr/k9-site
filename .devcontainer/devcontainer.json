@@ -1,0 +1,23 @@
+{
+  "name": "k9-site",
+  "build": { "dockerfile": "Dockerfile" },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [],
+  "forwardPorts": [8000], // important port, view from browser & inside container
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-yaml",
+        "usernamehw.errorlens",
+        "dzhavat.css-flexbox-cheatsheet",
+        "bierner.markdown-mermaid",
+        "DavidAnson.vscode-markdownlint",
+        "ecmel.vscode-html-css",
+        "pranaygp.vscode-css-peek",
+        "ritwickdey.LiveServer"
+      ]
+    }
+  }
+}

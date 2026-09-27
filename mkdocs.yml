@@ -1,0 +1,55 @@
+site_name: Ischus
+site_description: Professional K9 training, detection, and boarding
+site_author: Jared Mc
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: black
+      accent: yellow
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: yellow
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+  icon:
+    logo: material/dog-side
+
+nav:
+  - Home: index.md
+  - Services:
+      - Obedience Training: services/obedience.md
+      - Detection Training: services/detection.md
+  - Boarding: boarding.md
+  - Gallery: gallery.md
+  - About: about.md
+  - Contact: contact.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/solid/phone
+      link: "tel:[PHONE NUMBER]"
+    - icon: fontawesome/solid/envelope
+      link: "mailto:[EMAIL]"
