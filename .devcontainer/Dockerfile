@@ -10,7 +10,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         git=1:2.39.5-0+deb12u2 \
-        gh=2.101.0-1 \
+        gh \
         zsh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -26,6 +26,7 @@ alias mk='mkdocs'
 alias cl='clear'
 alias zz='. ~/.zshrc'
 EOF
+RUN sed -i 's/\r$//' /root/.zshrc
 
 RUN pip install --no-cache-dir pip==26.2.1
 
