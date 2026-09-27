@@ -51,6 +51,20 @@ git config --global user.email "aaron.capuchino@email.com"
 git config --global --list
 ```
 
+## Install GH modules for the environment
+
+> `Git` command is a little different, follow the steps below this one
+
+```bash
+apt-get update && apt-get install -y curl gnupg \
+  && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+  && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+  && apt-get update && apt-get install -y gh
+
+gh auth login
+```
+
 ### If you dont have Git, Some containers are NOT built with them
 
 1. Temporary fix
@@ -76,6 +90,9 @@ RUN pip install --no-cache-dir mkdocs-material
 
 WORKDIR /workspace
 ```
+> Pick GitHub.com → HTTPS → Login with a web browser (not password — GitHub CLI uses a device code + browser flow now, not username/password, which is likely why "password is wrong" happened. GitHub disabled plain password auth for git operations years ago).
+>
+> It'll give you a one-time code and a URL to open — enter the code there, and it links your terminal session to your account without ever typing a password.
 
 ### Initialize -- Tell git to watch this
 
@@ -91,8 +108,10 @@ git commit -m "Initial k9 site"
 
 Then create a new repo on GitHub (github.com/new — call it something like k9-site), and connect it:
 
+> `https://github.com/wHkr/k9-site`
+
 ```bash
-git remote add origin https://github.com/[your-username]/k9-site.git
+git remote add origin https://github.com/wHkr/k9-site.git
 git branch -M main
 git push -u origin main
 ```
