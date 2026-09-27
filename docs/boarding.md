@@ -12,23 +12,27 @@ throughout the year, we decorate them for the season:
 - [Add other seasons/holidays you do]
 
 <div class="grid" markdown>
+
 ![Kennel photo 1](assets/images/kennel-1.jpg)
+
 ![Kennel photo 2](assets/images/kennel-2.jpg)
+
 ![Kennel photo 3](assets/images/kennel-3.jpg)
+
 </div>
 
 See more in the [full gallery](gallery.md).
 
 ## What's Included
 
-- [Feeding schedule details]
-- [Exercise/walk schedule]
-- [Any grooming/extra services]
+- Feeding schedule details
+- Exercise/walk schedule
+- Any grooming/extra services
 
 ## Rates
 
 | Length of Stay | Price |
-|---|---|
+| --- | --- |
 | Per night | $[X] |
 | Weekly | $[X] |
 
