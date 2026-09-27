@@ -11,8 +11,21 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         git=1:2.39.5-0+deb12u2 \
         gh=2.101.0-1 \
+        zsh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+RUN cat > /root/.zshrc <<'EOF'
+eval "$(starship init zsh)"
+
+alias ls='ls -lah'
+alias gco='git commit'
+alias mk='mkdocs'
+alias cl='clear'
+alias zz='. ~/.zshrc'
+EOF
 
 RUN pip install --no-cache-dir pip==26.2.1
 

@@ -1,12 +1,23 @@
 {
   "name": "k9-site",
-  "build": { "dockerfile": "Dockerfile" },
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
+
   "mounts": [],
-  "forwardPorts": [8000], // important port, view from browser & inside container
+
+  "forwardPorts": [8000],
+
   "customizations": {
     "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+
       "extensions": [
         "yzhang.markdown-all-in-one",
         "redhat.vscode-yaml",
