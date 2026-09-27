@@ -1,35 +1,32 @@
 # Professional K9 Training & Boarding
 
-Trusted, experienced handling for obedience training, detection work,
-and comfortable boarding — right in [your area].
-
-## What We Offer
+Trusted, experienced handling for obedience training, detection work, and comfortable boarding — right here in **[your area]**.
 
 <div class="grid cards" markdown>
 
--   :material-paw:{ .lg .middle } **Obedience Training**
+* :material-paw:{ .lg .middle } **Obedience Training**
 
-    ---
+  ---
 
-    Foundational subordination and behavior training for dogs of any age.
+  Foundational obedience and behavior training for dogs of all ages.
 
-    [:octicons-arrow-right-24: Learn more](services/obedience.md)
+  [Learn More :material-arrow-right:](services/obedience.md)
 
--   :material-shield-search:{ .lg .middle } **Detection Training**
+* :material-shield-search:{ .lg .middle } **Detection Training**
 
-    ---
+  ---
 
-    Professional-grade drug and explosive detection training.
+  Professional-grade drug and explosive detection training.
 
-    [:octicons-arrow-right-24: Learn more](services/detection.md)
+  [Learn More :material-arrow-right:](services/detection.md)
 
--   :material-home-heart:{ .lg .middle } **Boarding**
+* :material-home-heart:{ .lg .middle } **Boarding**
 
-    ---
+  ---
 
-    Custom outdoor kennels, seasonally decorated, comfortable and secure.
+  Comfortable, secure boarding with custom outdoor kennels and seasonal touches.
 
-    [:octicons-arrow-right-24: Learn more](boarding.md)
+  [Learn More :material-arrow-right:](boarding.md)
 
 </div>
 
@@ -37,9 +34,9 @@ and comfortable boarding — right in [your area].
 
 ## Why Choose Us
 
-- [X] years of professional handling experience
-- Certified in [certifications, if applicable]
-- Custom-built kennels with seasonal touches your dog will love
-- [Any other differentiators]
+* **[X]+ years** of professional dog-handling experience
+* Certified in **[certifications, if applicable]**
+* Custom-built kennels designed with your dog's comfort and security in mind
+* Experienced handling tailored to each dog's needs
 
 [Get in Touch](contact.md){ .md-button .md-button--primary }
