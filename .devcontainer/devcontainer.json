@@ -16,7 +16,7 @@
         "DavidAnson.vscode-markdownlint",
         "ecmel.vscode-html-css",
         "pranaygp.vscode-css-peek",
-        "ritwickdey.LiveServer"
+        "ms-vscode.live-server"
       ]
     }
   }
