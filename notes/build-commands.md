@@ -64,11 +64,11 @@ pip3 --version
 pip install --upgrade pip
 ```
 
-### Pip installs the Python modules
-
-```bash
-pip install mkdocs-material && mkdocs serve
-```
+> IF NOT IN THE DOCKERFILE -- Pip installs the Python modules
+>
+> ```bash
+> pip install mkdocs-material && mkdocs serve
+> ```
 
 ## mkdocs serves the site
 
@@ -95,6 +95,19 @@ Then open `http://localhost:8000` to preview live as you edit.
 
 ## Git
 
+### Key distinctions
+
+```markdown
+| Thing              | What it is                                 |
+| ------------------ | ------------------------------------------ |
+| `mkdocs-material`  | Python package installed by `pip`          |
+| `mkdocs serve`     | MkDocs command for local server            |
+| `mkdocs gh-deploy` | MkDocs command for GitHub Pages deployment |
+| `gh`               | GitHub CLI, installed separately by `apt`  |
+```
+
+So `gh` is installed in your Dockerfile, while `mkdocs` comes from `mkdocs-material.
+
 > Only if wanting to deploy to Pages, or have a repo
 
 ### Set your global variables -- Tell git who you are
@@ -110,21 +123,38 @@ git config --global --list
 
 ## Install GH modules for the environment
 
-> `Git` command is a little different, follow the steps below this one
+> Add this to your Dockerfile, it will keep you from having to download git everytime
 
 ```bash
-apt-get update && apt-get install -y curl gnupg \
-  && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-  && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-  && apt-get update && apt-get install -y gh
+# Install Git + GitHub CLI
+FROM python:3.12-slim-bookworm
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl gnupg git \
+    && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+        | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends gh \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir mkdocs-material
+
+WORKDIR /workspace
+```
+
+Then:
+
+```bash
 gh auth login
 ```
 
-### If you dont have Git, Some containers are NOT built with them
+### If you didnt have Dockerfile download git when it was built, do this
 
-1. Temporary fix
+Temporary fix
 
 ```bash
 apt update && apt upgrade # If `sudo` command doesn't exist
@@ -134,20 +164,7 @@ apt-get update && apt-get install -y git
 git --version
 ```
 
-;
-2. Permanent fix (Dockerfile)
-
-```dockerfile
-FROM python:3.12-slim-bookworm
-
-RUN apt-get update && apt-get install -y git \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN pip install --no-cache-dir mkdocs-material
-
-WORKDIR /workspace
-```
-
+> [!Tip]
 > Pick GitHub.com → HTTPS → Login with a web browser (not password — GitHub CLI uses a device code + browser flow now, not username/password, which is likely why "password is wrong" happened. GitHub disabled plain password auth for git operations years ago).
 >
 > It'll give you a one-time code and a URL to open — enter the code there, and it links your terminal session to your account without ever typing a password.
@@ -184,7 +201,7 @@ git log -1 --format='%h %an <%ae>'
 git push -u origin main
 
 # If GitHub rejects still, its an older local commit, go back further
-it log --format='%h %an <%ae>' origin/main..main
+git log --format='%h %an <%ae>' origin/main..main
 ```
 
 ### Deploy to GitHub Pages -- Hosting the remote site
