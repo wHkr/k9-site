@@ -1,0 +1,37 @@
+:root {
+  --md-primary-fg-color: #1a1d21;
+  --md-accent-fg-color: #f2c744;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #16181b;
+  --md-default-fg-color: #e8e8e8;
+  --md-primary-fg-color: #1a1d21;
+  --md-typeset-a-color: #f2c744;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #37474f;
+  --md-typeset-a-color: #b8860b;
+}
+
+.md-button--primary {
+  background-color: #f2c744;
+  border-color: #f2c744;
+  color: #16181b;
+  font-weight: 600;
+}
+
+.md-button--primary:hover {
+  background-color: #ffd700;
+  border-color: #ffd700;
+}
+
+.grid.cards > ul > li {
+  border: 1px solid #3a3d42;
+  transition: border-color 0.2s ease;
+}
+
+.grid.cards > ul > li:hover {
+  border-color: #f2c744;
+}

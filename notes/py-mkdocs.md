@@ -32,8 +32,10 @@ pip install mkdocs-material && mkdocs serve
 
 The port is 8000 in containers. this allows to be seen by localhost ONLY both inside VSCode & the container
 
+For **Local hosting**, this is only for you as you make changes. Remote hosting is `mkdocs gh-deploy`. See below.
+
 ```bash
-mkdocs serve
+mkdocs serve # Hosting the local site
 ```
 
 Then open `http://localhost:8000` to preview live as you edit.
@@ -46,7 +48,9 @@ Then open `http://localhost:8000` to preview live as you edit.
 
 ```bash
 git config --global user.name "wHkr"
-git config --global user.email "aaron.capuchino@email.com"
+# Go onto github FIRST and get the email in your settings/email tab
+# If you dont do this, see below:
+git config --global user.email "35435153+wHkr@users.noreply.github.com"
 
 git config --global --list
 ```
@@ -114,25 +118,79 @@ Then create a new repo on GitHub (github.com/new — call it something like k9-s
 ```bash
 git remote add origin https://github.com/wHkr/k9-site.git
 git branch -M main
-git push -u origin main
+git push -u origin main # Only initial nees to set the origin, branch:main all -Upstream
 ```
 
-### Deploy to GitHub Pages
+#### Issue with initial push
+
+1. Wrong email set after the initial commit was made:
 
 ```bash
-mkdocs gh-deploy
+git commit --amend --reset-author --no-edit
+git log -1 --format='%h %an <%ae>'
+git push -u origin main
+
+# If GitHub rejects still, its an older local commit, go back further
+it log --format='%h %an <%ae>' origin/main..main
+```
+
+### Deploy to GitHub Pages -- Hosting the remote site
+
+```bash
+mkdocs gh-deploy # Remote Hosting
 ```
 
 This builds the site and pushes it to a gh-pages branch automatically — GitHub Pages serves straight from that.
 
 ### Enable Pages (If not auto-enabled)
 
-Go to the repo on GitHub → Settings → Pages → confirm source is set to gh-pages branch.
+Go to the REPO on GitHub → Settings (Gear on repo page) → Pages → confirm source is set to gh-pages branch.
 
 Your site will be live at:
 
 ```text
-https://[your-username].github.io/k9-site/
+https://whkr.github.io/k9-site/
+```
+
+### gh/git -- Extra info/insight
+
+`mkdocs gh-deploy` will create another branch. will throw a error. dont `git pull` like it asks to do. You don't want to merge the generated gh-pages branch back into main.
+
+   1. Took your Markdown/configuration from your working branch (main)
+
+   2. Built the HTML site into /workspace/site
+
+   3. Created/updated gh-pages
+
+   4. Pushed gh-pages to GitHub
+
+   5. GitHub Pages serves that gh-pages branch
+
+Normal worklow looks like this:
+
+```markdoown
+edit Markdown
+     ↓
+git add .
+     ↓
+git commit
+     ↓
+git push
+     ↓
+mkdocs gh-deploy
+     ↓
+gh-pages updated
+     ↓
+GitHub Pages updates
+```
+
+For example:
+
+```powershell
+git add .
+git commit -m "Update K9 site"
+git push
+mkdocs gh-deploy
 ```
 
 ## Later -- Point the GoDaddy domain at it
