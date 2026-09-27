@@ -90,6 +90,7 @@ RUN pip install --no-cache-dir mkdocs-material
 
 WORKDIR /workspace
 ```
+
 > Pick GitHub.com → HTTPS → Login with a web browser (not password — GitHub CLI uses a device code + browser flow now, not username/password, which is likely why "password is wrong" happened. GitHub disabled plain password auth for git operations years ago).
 >
 > It'll give you a one-time code and a URL to open — enter the code there, and it links your terminal session to your account without ever typing a password.

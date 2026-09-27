@@ -18,7 +18,6 @@ k9-site/
 │       └── images/
 ```
 
-
 ## 2. `mkdocs.yml`
 
 ```yaml
@@ -63,7 +62,6 @@ extra:
     - icon: fontawesome/solid/envelope
       link: "mailto:[EMAIL]"
 ```
-
 
 ## 3. `docs/index.md` (Homepage)
 
@@ -175,4 +173,3 @@ Have a question about training or want to book boarding? Reach out.
 | Sat | [hours] |
 | Sun | [hours] |
 ```
-

@@ -1,13 +1,15 @@
 # The order of building this site
 
-## Building the architecture of the website:
+## Building the architecture of the website
 
 This has two parts, you only need one.
 
 1. Using the folder & file diagram, construct the structure and create your code in each one.
 
 2. Use a single script to construct both the structure of the workspace folder, and all code within.
+
    1. Create a folder labeled `setup.sh` at the root directory. (/k9-site/*You*)
+
 ```bash
 #!/bin/bash
 set -e
@@ -26,18 +28,21 @@ echo "✅ Site structure created."
 echo "Next: pip install mkdocs-material && mkdocs serve"
 ```
 
+;
     3. Run it
 
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
+
 > If bash says it cannot find it, powershell changed the !# at the top, run this instead:
 >
 > ```bash
 > bash.sh
 > ```
 
+;
 4. Pip takes over
 
 ```bash
@@ -51,7 +56,7 @@ pip install mkdocs-material && mkdocs serve # Get the Python modules
 mkdocs serve # // Run server on port 8000; This can ONLY be seen within the container & VSCode localhost, NOT GH Pages
 ```
 
-## The flow, once the site's ready:
+## The flow, once the site's ready
 
 :
     1. Push the MkDocs project to a GitHub repo
