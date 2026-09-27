@@ -9,6 +9,48 @@ cd k9-site
 /workspace/(You-are-here)
 ```
 
+## Building the architecture of the website
+
+This has two parts, you only need one.
+
+1. Using the folder & file diagram, construct the structure and create your code in each one.
+
+2. Use a single script to construct both the structure of the workspace folder, and all code within.
+
+   1. Create a folder labeled `setup.sh` at the root directory. (/k9-site/*You*)
+
+```bash
+#!/bin/bash
+set -e
+
+mkdir -p docs/services docs/assets/images docs/assets/stylesheets
+
+# mkdocs.yml
+cat > mkdocs.yml << 'EOF'
+site_name: [Business Name] K9 Services
+
+...
+
+EOF
+
+echo "✅ Site structure created."
+echo "Next: pip install mkdocs-material && mkdocs serve"
+```
+
+;
+    3. Run it
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+> If bash says it cannot find it, powershell changed the !# at the top, run this instead:
+>
+> ```bash
+> bash.sh
+> ```
+
 ## Run the latest python
 
 ```bash
@@ -19,7 +61,7 @@ pip3 --version
 ### Update pip - Always
 
 ```bash
-pip install --uupgrade pip
+pip install --upgrade pip
 ```
 
 ### Pip installs the Python modules
@@ -37,6 +79,17 @@ For **Local hosting**, this is only for you as you make changes. Remote hosting 
 ```bash
 mkdocs serve # Hosting the local site
 ```
+
+## The flow, once the site's ready
+
+:
+    1. Push the MkDocs project to a GitHub repo
+:
+    2. mkdocs gh-deploy — one command, builds and publishes to GitHub Pages automatically
+:
+    3. In GoDaddy's DNS settings, add a few DNS records pointing to GitHub Pages (I can give you the exact records when we're there)
+:
+    3. His .com URL then shows the actual site
 
 Then open `http://localhost:8000` to preview live as you edit.
 
@@ -192,5 +245,27 @@ git commit -m "Update K9 site"
 git push
 mkdocs gh-deploy
 ```
+
+### Remember deployments -- Local and Remote
+
+1. Not Everywhere -- Local dev server: `mkdocs`
+
+    - Only accessible on your machine, through the port VS Code forwarded (localhost:8000)
+
+    - Not reachable from your phone, another computer, or the internet — it's just for you to preview while building
+
+2. Everywhere -- Deploy to hosting service: `mkdocs gh-serve`
+
+   1. Deploy it (the real goal, since this is for your dad's business):
+       - mkdocs gh-deploy → publishes to GitHub Pages, gets a real public URL
+
+       - Then point his GoDaddy domain at it (the DNS step we talked about earlier)
+
+       - Once done, it's live for anyone, anytime — no container needed to view it
+   2. Temporary sharing during dev (if you just want to show someone the in-progress site before deploying):
+
+       - VS Code's port forwarding has a "Make Public" option — right-click the forwarded port in the Ports tab → Port Visibility → Public
+
+       - Gives a temporary shareable URL, but only works while your container/VS Code session is actively running
 
 ## Later -- Point the GoDaddy domain at it

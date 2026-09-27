@@ -1,5 +1,31 @@
 # Initial Build
 
+## Current project stack
+
+```markdown
+Windows
+   ↓
+WSL
+   ↓
+VS Code
+   ↓
+Docker container
+   ↓
+Linux environment
+   ↓
+Git
+   ↓
+Remote repository
+   ↓
+MkDocs
+   ↓
+gh-pages
+   ↓
+GitHub Pages
+   ↓
+LIVE SITE
+```
+
 ## 1. Folder Structure
 
 ```markdown
